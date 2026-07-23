@@ -4,7 +4,7 @@ $files = Get-ChildItem -Path "data" -Filter "*.json"
 
 foreach ($file in $files) {
     $content = Get-Content -Path $file.FullName | ConvertFrom-Json
-    if ($content.Name -contains "Standard_B2pts_v2")
+    if ($content | Where-Object { $_.Name -eq "Standard_B2pts_v2" })
     {
         $regions_with_correct_size += $file.BaseName
     }
